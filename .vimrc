@@ -23,3 +23,11 @@ filetype plugin on
 filetype indent on
 runtime macros/machit.vim
 
+function! GitCommit ()
+  execute 'write'
+  let message = input('Enter commit message: ')
+  execute '!git add ' . bufname('%') . ' && git commit -m ''' . message . ''';'
+endfunction
+  
+imap <F7> <Esc>:call GitCommit()<CR>
+map <F7> <Esc>:call GitCommit()<CR>
